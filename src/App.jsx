@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getMonthOverview } from './api/costApi.js'
 import { MonthHeader } from './MonthHeader.jsx';
+import { CostTables } from './CostTables.jsx' 
 import './App.css'
 
 export function App() {
@@ -16,6 +17,10 @@ export function App() {
         })
     }, [year, month]);
 
+    if (!monthData) {
+        return <p>Lade Monatsdaten…</p>;
+    }
+
     return (
         <div>
             <MonthHeader 
@@ -23,6 +28,14 @@ export function App() {
                 currYear = {year}
                 setMonth = {setMonth}
                 setYear = {setYear}
+            />
+
+            <CostTables 
+                allMonthsIncome = {monthData.allMonthsIncome}
+                allMonthsExpense = {monthData.allMonthsExpense}
+                sumIn = {monthData.sumIn}
+                sumOut = {monthData.sumOut}
+                difference = {monthData.difference}
             />
         </div>
     );
