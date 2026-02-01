@@ -1,0 +1,15 @@
+.sum-in {
+    text-align: center;
+    color: darkgreen;
+}
+.sum-out {
+    text-align: center;
+    color: red;
+}
+
+.diff {
+    text-align: center;   /* Inhalt zentrieren */
+    margin-top:15px;
+    font-weight: bold;
+    font-size: 1.1rem;    /* leicht größer, damit es hervorsticht */
+}
