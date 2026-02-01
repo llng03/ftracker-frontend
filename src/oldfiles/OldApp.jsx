@@ -41,17 +41,13 @@ export function OldApp() {
   }
 
   
-  function openModalToPots() {
-    document.getElementById('modal-to-pots').classList.remove('hidden');
-  }
+ 
 
   function closeModalToPots() {
     document.getElementById('modal-to-pots').classList.add('hidden');
   }
 
-  function openModalOverview() {
-    document.getElementById('overview').classList.remove('hidden');
-  }
+  
 
   function closeModalOverview() {
     document.getElementById('overview').classList.add('hidden');

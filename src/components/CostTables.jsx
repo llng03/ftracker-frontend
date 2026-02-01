@@ -1,7 +1,7 @@
 import { CostTable } from "./CostTable";
 import './CostTables.css'
 
-export function CostTables({ allMonthsIncome, allMonthsExpense, sumIn, sumOut, difference }) {
+export function CostTables({ allMonthsIncome, allMonthsExpense, sumIn, sumOut, difference, showDelColumn }) {
     return (
         <>
             <div className="diff">
@@ -13,11 +13,13 @@ export function CostTables({ allMonthsIncome, allMonthsExpense, sumIn, sumOut, d
                     costs = {allMonthsIncome}
                     sum = {sumIn}
                     isIncome = {true}
+                    showDelColumn={showDelColumn}
                 />
                 <CostTable
                     costs = {allMonthsExpense}
                     sum = {sumOut}
                     isIncome = {false}
+                    showDelColumn = {showDelColumn}
                 />
             </div>
         </>
