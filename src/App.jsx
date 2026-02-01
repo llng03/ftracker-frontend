@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { getMonthOverview } from './api/costApi.js'
+import { getMonthOverview, createFixedCost } from './api/costApi.js'
 import { MonthHeader } from './components/MonthHeader.jsx';
 import { CostTables } from './components/CostTables.jsx' ;
 import { TopButtons } from './components/TopButtons.jsx';
 import { OverviewModal } from './components/OverviewModal.jsx';
 import { ToPotsModal } from './components/ToPotsModal.jsx';
+import { FixedCostFormModal } from './components/FixedCostFormModal.jsx'
 import './App.css'
 
 export function App() {
@@ -12,6 +13,8 @@ export function App() {
     const[showDelColumn, setShowDelColumn] = useState(false);
     const [showOverview, setShowOverview] = useState(false);
     const [showToPots, setShowToPots] = useState(false);
+    const [showFixedIncomeForm, setShowFixedIncomeForm] = useState(false);
+    const [showFixedExpForm, setShowFixedExpForm] = useState(false);
 
     const [month, setMonth] = useState(new Date().getMonth() + 1);
     const [year, setYear] = useState(new Date ().getFullYear());
@@ -22,6 +25,13 @@ export function App() {
             setMonthData(response.data);
         })
     }, [year, month]);
+
+    const loadMonthOverview = async () => {
+        return getMonthOverview(year, month)
+            .then(response => {
+                setMonthData(response.data);
+        });
+    };
 
     if (!monthData) {
         return <p>Lade Monatsdaten…</p>;
@@ -41,6 +51,14 @@ export function App() {
                 setShowOverview = {setShowOverview}
                 setShowToPots = {setShowToPots}
             />
+
+            <button onClick = {() => setShowFixedIncomeForm(true)}>
+                Feste Einnahme hinzufügen
+            </button>
+
+           <button onClick = {() => setShowFixedExpForm(true)} >
+                Feste Ausgabe hinzufügen
+           </button>
 
             <CostTables 
                 allMonthsIncome = {monthData.allMonthsIncome}
@@ -62,6 +80,24 @@ export function App() {
             {showToPots && (
                 <ToPotsModal 
                     setShowToPots = {setShowToPots}
+                />
+            )}
+            
+            {showFixedIncomeForm && (
+                <FixedCostFormModal 
+                    setShowFixedCostForm = {setShowFixedIncomeForm}
+                    createFixedCost = {createFixedCost}
+                    isIncome = {true}
+                    onSuccess={loadMonthOverview}
+                />
+            )}
+
+            {showFixedExpForm && (
+                <FixedCostFormModal
+                    setShowFixedCostForm = {setShowFixedExpForm}
+                    createFixedCost = {createFixedCost}
+                    isIncome = {false}
+                    onSuccess={loadMonthOverview}
                 />
             )}
         </div>
