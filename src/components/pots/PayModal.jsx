@@ -8,26 +8,25 @@ export function PayModal({ potId, setActivatePotIdForPay, onSuccess }) {
     });
     const[error, setError] = useState(null);
     
-     const handleChange = (e) => {
-            const { id, value } = e.target;
-            setTakeMoneyRequest({
-                ...takeMoneyRequest,
-                [id]: value
-            });
-        };
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setTakeMoneyRequest({
+            ...takeMoneyRequest,
+            [id]: value
+        });
+    };
     
-        const handleSubmit = async (e) => {
-            e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
     
-            try {
-                await takeMoney(takeMoneyRequest);
-                setError(null);
-                onSuccess();
-            } catch (err) {
-                setError("Fehler beim Absenden: " + err.response?.data?.message || err.message);
-            }
-    
+        try {
+            await takeMoney(takeMoneyRequest);
+            setError(null);
+            onSuccess();
+        } catch (err) {
+            setError("Fehler beim Absenden: " + err.response?.data?.message || err.message);
         }
+    }
 
 
     return (

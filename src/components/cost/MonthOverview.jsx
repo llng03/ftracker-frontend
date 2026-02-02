@@ -28,6 +28,9 @@ export function MonthOverview() {
     }, [year, month]);
 
     const loadMonthOverview = async () => {
+        setShowFixedExpForm(false);
+        setShowFixedIncomeForm(false);
+        setShowToPots(false);
         return getMonthOverview(year, month)
             .then(response => {
                 setMonthData(response.data);
@@ -84,6 +87,9 @@ export function MonthOverview() {
             {showToPots && (
                 <ToPotsModal 
                     setShowToPots = {setShowToPots}
+                    year={year}
+                    month={month}
+                    onSuccess= {loadMonthOverview}
                 />
             )}
             

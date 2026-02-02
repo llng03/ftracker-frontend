@@ -5,6 +5,10 @@ export const getPotOverview = () => {
     return api.get("/pots");
 };
 
+export const getPotList = () => {
+    return api.get("/pots/potList")
+}
+
 //POST
 export const addPot = (pot) => {
     return api.post("/pots/new", pot);

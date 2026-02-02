@@ -17,3 +17,9 @@ export const createMonthsCost = (cost, year, month) => {
         params: { year, month }
     })
 }
+
+export const addToPots = (year, month, distributeRequest ) => {
+    return api.post("/costs/toPots", distributeRequest, {
+        params: { year, month }
+    })
+}
