@@ -34,7 +34,7 @@ export function PayModal({ potId, setActivatePotIdForPay, onSuccess }) {
             <div className="popup">
                 <div className="modal-content">
                 <span className="close" onClick={() => setActivatePotIdForPay(null)}>x</span>
-                <form onSubmit={handleSubmit}>
+                <form className="form-field" onSubmit={handleSubmit}>
                     <label htmlFor="amount">Betrag</label>
                     <input 
                         type="number" 

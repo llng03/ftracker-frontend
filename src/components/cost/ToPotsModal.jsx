@@ -45,7 +45,7 @@ export function ToPotsModal({ setShowToPots, year, month, onSuccess }) {
                     <span className="close" onClick={() =>
                         setShowToPots(false)
                     }>&times;</span>
-                    <form onSubmit={handleSubmit}>
+                    <form className="form-field" onSubmit={handleSubmit}>
                         <label htmlFor="amount">Betrag: </label>
                         <input 
                             type="number" 

@@ -19,16 +19,20 @@ form {
     background-color: ghostwhite;
     padding: 20px;
     border-radius: 12px;
-    margin-bottom: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.form-field {
-    margin-bottom: 15px;
 }
 
 button:not(.arrow):hover {
     background-color: #2980b9;
+}
+
+button {
+    margin-top:10px;
+    margin-left:10px;
+}
+
+a {
+    margin-top: 10px;
 }
 
 .hidden {
@@ -39,10 +43,10 @@ button:not(.arrow):hover {
     background: #fff;
     padding: 20px;
     border-radius: 12px;
-    max-width: 600px;
+    max-width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    width: 90%;
+    width: 100%;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     z-index: 1001;
 }
@@ -68,14 +72,13 @@ button:not(.arrow):hover {
     align-items: center;
     z-index: 1000;
 }
-
+ffo
 .popup {
-    background-color: #fff;
-    padding: 20px;
     border-radius: 8px;
     min-width: 300px;
     text-align: center;
 }
+
 .close {
     float: right;
     font-size: 24px;
@@ -95,10 +98,44 @@ button:not(.arrow):hover {
     text-align: center;
 }
 
-input[type="text"],input[type="number"] {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
+label {
+    font-size: 1rem;
+    color: #2c3e50;
+    font-weight: 500; 
+}
+
+/* Inputs allgemein */
+input,
+select,
+textarea {
+    width: 200px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    border-radius: 8px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column; /* Label über Input */
+    gap: 6px;               /* Abstand zwischen Label und Input */
+    margin-bottom: 14px;
+    justify-content: center;
+}
+
+.checkbox-label {
+    display: flex;          /* Checkbox und Text nebeneinander */
+    align-items: center;    /* Vertikal zentriert */
+    gap: 8px;               /* Abstand zwischen Checkbox und Text */
+    cursor: pointer;        /* Zeigt den Mauszeiger als Pointer */
+    font-size: 0.95rem;     /* Optional: Schriftgröße */
+    user-select: none;      /* Verhindert versehentliches Markieren beim Klicken */
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 16px;            /* Größe der Checkbox */
+    height: 16px;
 }

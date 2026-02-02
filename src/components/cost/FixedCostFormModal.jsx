@@ -49,7 +49,7 @@ export function FixedCostFormModal({ isIncome, setShowFixedCostForm, onSuccess }
                         setShowFixedCostForm(false)
                     }>&times;</span>
 
-                    <form onSubmit = {handleSubmit}>
+                    <form className="form-field" onSubmit = {handleSubmit}>
                         <label htmlFor="descr">{isIncome ? "Eingabe:" : "Ausgabe:"}</label>
                         <input 
                             type="text" 
@@ -78,9 +78,10 @@ export function FixedCostFormModal({ isIncome, setShowFixedCostForm, onSuccess }
                             onChange={handleChange}
                         />
 
-                        <label>
+                        <label className="checkbox-label">
                             <input 
                                 type="checkbox" 
+                                
                                 id="endToggle" 
                                 onChange={() => toggleEndMonth()} 
                                 checked = {!endMonthToggled}

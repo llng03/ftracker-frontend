@@ -40,7 +40,7 @@ export function DistributeModal({ pots, setShowDistributeModal, onSuccess }) {
                         onClick={() => setShowDistributeModal(false)}
                     >&times;</span>
 
-                    <form onSubmit={handleSubmit}>
+                    <form className="form-field" onSubmit={handleSubmit}>
                         <label htmlFor="potId">Verteile an Pot:</label>
                         <select 
                             id="potId" 

@@ -27,7 +27,7 @@ export function PotContainer({ pots, loadPotOverview }) {
     }
 
     return (
-        <div className="pot-container">
+        <div className="pots-container">
             {pots.map( pot =>
                 <div key={pot.id}>
                     <div className="pot-header">
