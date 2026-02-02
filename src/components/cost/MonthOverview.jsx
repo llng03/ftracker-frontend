@@ -16,9 +16,14 @@ export function MonthOverview() {
     const [showToPots, setShowToPots] = useState(false);
     const [showFixedIncomeForm, setShowFixedIncomeForm] = useState(false);
     const [showFixedExpForm, setShowFixedExpForm] = useState(false);
+    const [correctMode, setCorrectMode] = useState(false);
 
     const [month, setMonth] = useState(new Date().getMonth() + 1);
     const [year, setYear] = useState(new Date ().getFullYear());
+
+    function toggleCorrectMode () {
+        setCorrectMode(!correctMode);
+    }
 
     useEffect(() => {
         getMonthOverview(year, month)
@@ -43,6 +48,10 @@ export function MonthOverview() {
 
     return (
         <div>
+            {correctMode && (
+                 <div className="page-overlay"></div>
+            )}
+
             <MonthHeader 
                 currMonth = {month}
                 currYear = {year}
@@ -51,10 +60,26 @@ export function MonthOverview() {
             />
 
             <TopButtons 
-                setShowDelColumn = {setShowDelColumn}
                 setShowOverview = {setShowOverview}
                 setShowToPots = {setShowToPots}
+                correctMode = {correctMode}
+                toggleCorrectMode = {toggleCorrectMode}
             />
+
+            {correctMode && (
+                <>
+                    <div className="page-overlay"></div>
+                    <p className="correct-mode-warning">{
+                        "Du befindest dich im Korrekturmodus. " +
+                        "Du solltest ihn nur verwenden, " +
+                        "um versehentlich falsch eingegebene Eingaben zu korrigieren " +
+                        "oder rückgängig zu machen. " +
+                        "Nutze ihn nicht, um echte Änderungen an laufenden Kosten vorzunehmen, " +
+                        "damit die vergangenen Monate weiterhin korrekt bleiben."
+                    }</p>
+                </>
+
+            )}
 
             <CostForms 
                 onSuccess={loadMonthOverview}

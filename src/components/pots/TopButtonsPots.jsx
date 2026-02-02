@@ -1,4 +1,4 @@
-export function TopButtonsPots({ setShowDistributeModal, setShowCreatePotModal }) {
+export function TopButtonsPots({ setShowDistributeModal, setShowCreatePotModal, correctMode, toggleCorrectMode }) {
     return (
         <>
             <div className="top-button-container">
@@ -6,6 +6,7 @@ export function TopButtonsPots({ setShowDistributeModal, setShowCreatePotModal }
                 <div className="top-button-right">
                     <button onClick={() => setShowDistributeModal(true)}>verteilen</button>
                     <button onClick={() => setShowCreatePotModal(true)}>neuen Pot erstellen</button>
+                    <button onClick={() => toggleCorrectMode()}>{correctMode ? "KorrekturModus beenden" : "Korrekturmodus"}</button>
                 </div>
             </div>
         </>

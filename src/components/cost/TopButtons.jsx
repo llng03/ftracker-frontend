@@ -1,7 +1,7 @@
 
 import './TopButtons.css'
 
-export function TopButtons({ setShowDelColumn, setShowOverview, setShowToPots  }) {
+export function TopButtons({ setShowOverview, setShowToPots, correctMode, toggleCorrectMode  }) {
 
     return (
         <>
@@ -15,8 +15,8 @@ export function TopButtons({ setShowDelColumn, setShowOverview, setShowToPots  }
                         setShowToPots(true)
                     }>Geld auf Pots verteilen</button>
                     <button onClick={ () =>
-                        setShowDelColumn(true)
-                    }>Löschen</button>
+                        toggleCorrectMode()
+                    }>{correctMode ? "Korrekturmodus beenden" : "Korrekturmodus"}</button>
                 </div>
             </div>
         </>

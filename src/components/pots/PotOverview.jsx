@@ -10,6 +10,12 @@ export function PotOverview() {
 
     const[showDistributeModal, setShowDistributeModal] = useState(false);
     const[showCreatePotModal, setShowCreatePotModal] = useState(false);
+    const [correctMode, setCorrectMode] = useState(false);
+
+
+    function toggleCorrectMode () {
+        setCorrectMode(!correctMode);
+    }
 
     useEffect(() => {
         getPotOverview()
@@ -34,11 +40,30 @@ export function PotOverview() {
 
     return (
         <>
+
             <h1>Übersicht</h1>
+
             <TopButtonsPots 
                 setShowDistributeModal={setShowDistributeModal}
                 setShowCreatePotModal={setShowCreatePotModal}
+                correctMode = {correctMode}
+                toggleCorrectMode={toggleCorrectMode}
             />
+
+            {correctMode && (
+                <>
+                    <div className="page-overlay"></div>
+                    <p className="correct-mode-warning">{
+                        "Du befindest dich im Korrekturmodus. " +
+                        "Du solltest ihn nur verwenden, " +
+                        "um versehentlich falsch eingegebene Eingaben zu korrigieren " +
+                        "oder rückgängig zu machen." +
+                        "Nutze ihn nicht, um echte Änderungen an laufenden Kosten vorzunehmen," +
+                        "damit die vergangenen Monate weiterhin korrekt bleiben."
+                    }</p>
+                </>
+
+            )}
 
             <h2>Unverteilt: {potData.undistributed.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</h2>
             <h2>Summe: {potData.sumTotal.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</h2>

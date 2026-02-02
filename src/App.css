@@ -139,3 +139,24 @@ textarea {
     width: 16px;            /* Größe der Checkbox */
     height: 16px;
 }
+
+.page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.1); /* leicht roter Filter */
+    pointer-events: none; /* klickbar bleibt die Seite weiterhin */
+    z-index: 9999;        /* über allen Inhalten */
+}
+
+.correct-mode-warning {
+    color: #d9534f;          /* kräftiges Rot für Warnung */
+    font-size: 1.1rem;       /* etwas größer als Standard, aber nicht riesig */
+    font-weight: 600;        /* leicht fett */
+    text-align: center;      /* zentriert */
+    margin: 30px auto;       /* Abstand oben/unten */
+    width: 90%;              /* breiter, fast die ganze Seite */
+    line-height: 1.5;        /* angenehme Zeilenhöhe */
+}

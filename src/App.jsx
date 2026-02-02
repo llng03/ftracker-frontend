@@ -7,8 +7,14 @@ import { Routes, Route } from "react-router-dom";
 export function App() {
     return (
         <Routes>
-            <Route path="/" element={<MonthOverview />} />
-            <Route path="/pots" element={<PotOverview />} />
+            <Route 
+                path="/" 
+                element={<MonthOverview />} 
+            />
+            <Route 
+                path="/pots" 
+                element={<PotOverview />} 
+            />
         </Routes>
     )
 }
