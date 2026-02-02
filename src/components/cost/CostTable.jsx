@@ -19,7 +19,7 @@ export function CostTable({ costs, sum, isIncome, showDelColumn }) {
                         {costs.map(cost =>
                             <tr key={cost.id}>
                                 <td>{cost.descr}</td>
-                                <td>{cost.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</td>
+                                <td>{Number(cost.amount).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</td>
                                 {showDelColumn && (
                                     <td>
                                 

@@ -1,0 +1,8 @@
+.form-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;   /* zentriert beide Formulare */
+    flex-wrap: wrap;           /* erlaubt Umbruch auf kleinen Bildschirmen */
+    max-width: 1100px;
+    margin: 0 auto;            /* zentriert den Container auf der Seite */
+}

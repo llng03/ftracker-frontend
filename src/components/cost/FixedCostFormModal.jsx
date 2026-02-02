@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { createFixedCost } from "../api/costApi";
+import { createFixedCost } from "../../api/costApi";
 
 export function FixedCostFormModal({ isIncome, setShowFixedCostForm, onSuccess }) {
     const[endMonthToggled, setEndMonthToggled] = useState(false);
+    const [error, setError] = useState(null);
     const [formData, setFormData] = useState( {
         descr: "",
         amount: "",
@@ -25,8 +26,9 @@ export function FixedCostFormModal({ isIncome, setShowFixedCostForm, onSuccess }
 
         try {
             await createFixedCost(formData);
+            setError(null);
         } catch (err) {
-            console.error(err);
+            setError("Fehler beim Absenden: " + err.response?.data?.message || err.message);
         }
 
         onSuccess();
@@ -107,6 +109,11 @@ export function FixedCostFormModal({ isIncome, setShowFixedCostForm, onSuccess }
                         </select>
 
                         <button type="submit">Hinzufügen</button>
+                        {error && (
+                            <div className="error">
+                                <p>{error}</p>
+                            </div>
+                        )}
                     </form>
                 </div>
             </div>

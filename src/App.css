@@ -94,3 +94,11 @@ button:not(.arrow):hover {
 .tocenter {
     text-align: center;
 }
+
+input[type="text"],input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}

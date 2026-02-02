@@ -6,7 +6,7 @@ export function TopButtons({ setShowDelColumn, setShowOverview, setShowToPots  }
     return (
         <>
             <div className="top-button-container">
-                <button onClick="/pots" className="top-button-left">&rarr; Zu den Pots</button>
+                <a href="/pots" className="top-button-left">&rarr; Zu den Pots</a>
                 <div className="top-button-right">
                     <button onClick={() =>
                         setShowOverview(true)

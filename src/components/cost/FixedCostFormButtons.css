@@ -1,0 +1,5 @@
+.fixed-cost-button-class {
+    display: flex;         /* Flexbox einschalten */
+    justify-content: center;
+    gap: 10px;             /* Abstand zwischen den Buttons */
+}

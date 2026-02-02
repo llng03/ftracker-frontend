@@ -11,3 +11,9 @@ export const getMonthOverview = (year, month) => {
 export const createFixedCost = fixedCost => {
     return api.post("/costs/fixedCost", fixedCost)
 };
+
+export const createMonthsCost = (cost, year, month) => {
+    return api.post("/costs/monthCost", cost, {
+        params: { year, month }
+    })
+}

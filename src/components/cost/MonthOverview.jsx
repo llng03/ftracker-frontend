@@ -1,0 +1,109 @@
+import { useState, useEffect } from 'react';
+import { getMonthOverview, createFixedCost } from '../../api/costApi.js'
+import { MonthHeader } from './MonthHeader.jsx';
+import { CostTables } from './CostTables.jsx' ;
+import { TopButtons } from './TopButtons.jsx';
+import { OverviewModal } from './OverviewModal.jsx';
+import { ToPotsModal } from './ToPotsModal.jsx';
+import { FixedCostFormModal } from './FixedCostFormModal.jsx'
+import { CostForms } from './CostForms.jsx'
+import { FixedCostFormButtons } from './FixedCostFormButtons.jsx';
+
+export function MonthOverview() {
+    const[monthData, setMonthData] = useState(null);
+    const[showDelColumn, setShowDelColumn] = useState(false);
+    const [showOverview, setShowOverview] = useState(false);
+    const [showToPots, setShowToPots] = useState(false);
+    const [showFixedIncomeForm, setShowFixedIncomeForm] = useState(false);
+    const [showFixedExpForm, setShowFixedExpForm] = useState(false);
+
+    const [month, setMonth] = useState(new Date().getMonth() + 1);
+    const [year, setYear] = useState(new Date ().getFullYear());
+
+    useEffect(() => {
+        getMonthOverview(year, month)
+        .then(response => {
+            setMonthData(response.data);
+        })
+    }, [year, month]);
+
+    const loadMonthOverview = async () => {
+        return getMonthOverview(year, month)
+            .then(response => {
+                setMonthData(response.data);
+        });
+    };
+
+    if (!monthData) {
+        return <p>Lade Monatsdaten…</p>;
+    }
+
+    return (
+        <div>
+            <MonthHeader 
+                currMonth = {month}
+                currYear = {year}
+                setMonth = {setMonth}
+                setYear = {setYear}
+            />
+
+            <TopButtons 
+                setShowDelColumn = {setShowDelColumn}
+                setShowOverview = {setShowOverview}
+                setShowToPots = {setShowToPots}
+            />
+
+            <CostForms 
+                onSuccess={loadMonthOverview}
+                year={year}
+                month={month}
+            />
+
+            <FixedCostFormButtons
+                setShowFixedIncomeForm={setShowFixedIncomeForm}
+                setShowFixedExpForm={setShowFixedExpForm}
+            />
+
+            <CostTables 
+                allMonthsIncome = {monthData.allMonthsIncome}
+                allMonthsExpense = {monthData.allMonthsExpense}
+                sumIn = {monthData.sumIn}
+                sumOut = {monthData.sumOut}
+                difference = {monthData.difference}
+                showDelColumn = {showDelColumn}
+            />
+
+            {showOverview && (
+                <OverviewModal 
+                    setShowOverview = {setShowOverview}
+                    fixedIncome = {monthData.fixedIncome}
+                    fixedExpense = {monthData.fixedExpense}
+                />
+            )}
+
+            {showToPots && (
+                <ToPotsModal 
+                    setShowToPots = {setShowToPots}
+                />
+            )}
+            
+            {showFixedIncomeForm && (
+                <FixedCostFormModal 
+                    setShowFixedCostForm = {setShowFixedIncomeForm}
+                    createFixedCost = {createFixedCost}
+                    isIncome = {true}
+                    onSuccess={loadMonthOverview}
+                />
+            )}
+
+            {showFixedExpForm && (
+                <FixedCostFormModal
+                    setShowFixedCostForm = {setShowFixedExpForm}
+                    createFixedCost = {createFixedCost}
+                    isIncome = {false}
+                    onSuccess={loadMonthOverview}
+                />
+            )}
+        </div>
+    );
+}
