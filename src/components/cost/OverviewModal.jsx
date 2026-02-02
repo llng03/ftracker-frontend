@@ -1,6 +1,6 @@
 import { OverviewTable } from './OverviewTable.jsx'
 
-export function OverviewModal({ setShowOverview, fixedIncome, fixedExpense }) {
+export function OverviewModal({ setShowOverview, fixedIncome, fixedExpense, correctMode, loadMonthOverview }) {
 
     return (
         <div className="overlay">
@@ -13,10 +13,14 @@ export function OverviewModal({ setShowOverview, fixedIncome, fixedExpense }) {
                     <OverviewTable 
                         fixedCosts = {fixedIncome || []}
                         isIncome = {true}
+                        correctMode = {correctMode}
+                        loadMonthOverview={loadMonthOverview}
                     />
                     <OverviewTable
                         fixedCosts = {fixedExpense || []}
                         isIncome = {false}
+                        correctMode = {correctMode}
+                        loadMonthOverview={loadMonthOverview}
                     />
                 </div>
             </div>

@@ -23,3 +23,10 @@ export const addToPots = (year, month, distributeRequest ) => {
         params: { year, month }
     })
 }
+
+//DELETE
+export const deleteFixedCost = (costId) => {
+    return api.delete("/costs/deleteFixedCost", {
+        params: {costId}
+    })
+}

@@ -106,6 +106,8 @@ export function MonthOverview() {
                     setShowOverview = {setShowOverview}
                     fixedIncome = {monthData.fixedIncome}
                     fixedExpense = {monthData.fixedExpense}
+                    correctMode = {correctMode}
+                    loadMonthOverview = {loadMonthOverview}
                 />
             )}
 

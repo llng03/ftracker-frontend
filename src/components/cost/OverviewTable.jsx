@@ -1,4 +1,15 @@
-export function OverviewTable({ fixedCosts, isIncome }) {
+import { deleteFixedCost } from "../../api/costApi";
+
+export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOverview }) {
+    function handleDelete(costId) {
+        if (window.confirm("Willst du diesen Eintrag wirklich löschen?")) {
+            deleteFixedCost(costId)
+                .then(() => loadMonthOverview())
+                .catch(err => alert("Fehler beim Löschen: " + 
+                    err.response?.data?.message || err.message
+                ));
+        }
+    }
     return (
         <table>
             <thead>
@@ -8,7 +19,9 @@ export function OverviewTable({ fixedCosts, isIncome }) {
                     <th>Frequenz</th>
                     <th>Startmonat</th>
                     <th>Endmonat</th>
-                    <th>-</th>
+                    {correctMode &&
+                        <th>-</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -21,13 +34,11 @@ export function OverviewTable({ fixedCosts, isIncome }) {
                         <td>
                             {fCost.endMonth != null ? fCost.endYear + "-" + fCost.endMonth : '-'}
                         </td>
-                        <td>
-                            <form method="post" th:action="@{/{year}/{month}/deleteFixedExpense(year=${currYear}, month=${currMonth})}">
-                                <input type="hidden" name="descr" th:value="${fExpense.descr}" />
-                                <input type="hidden" name="start" th:value="${fExpense.start}" />
-                                <button type="submit">-</button>
-                            </form>
-                        </td>
+                        {correctMode &&
+                            <td>
+                                <button className="correct-delete-btn" onClick={() => handleDelete(fCost.id)}>x</button>
+                            </td>
+                        }
                     </tr>
                 )}
                         
