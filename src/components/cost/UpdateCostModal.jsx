@@ -5,8 +5,8 @@ export function UpdateCostModal({cost, setShowUpdateCost, onPatchSubmit, year, m
     const [error, setError] = useState(null);
     const [updateCostRequest, setUpdateCostRequest] = useState({
         costId: cost.id,
-        descr: "",
-        amount: ""
+        descr: cost.descr,
+        amount: cost.amount
     });
 
     const handleSubmit = async (e) => {
@@ -34,23 +34,24 @@ export function UpdateCostModal({cost, setShowUpdateCost, onPatchSubmit, year, m
             <div className="popup">
                 <div className="modal-content">
                     <span className="close" onClick={() => setShowUpdateCost(false)}>&times;</span>
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="descr"></label>
-                        <input type="text" id="descr" value={updateCostRequest.descr} placeholder= {cost.descr} onChange={handleChange}></input>
-                        <label htmlFor="amount"></label>
+                    <form onSubmit={handleSubmit} className="form-field">
+                        <label htmlFor="descr">Beschreibung</label>
+                        <input type="text" id="descr" value={updateCostRequest.descr}onChange={handleChange}></input>
+                        <label htmlFor="amount">Betrag</label>
                         <input
                             type="number" 
                             id="amount" 
                             value={updateCostRequest.amount}
-                            placeholder = {cost.amount} 
                             onChange={handleChange}
                             step="0.01" 
                             min="0" 
                         ></input>
                         <button type="submit">Eintrag ändern</button>
-                        {error &&
-                            <p className="error">{error}</p>
-                        }
+                        {error && (
+                            <div className="error">
+                                <p>{error}</p>
+                            </div>
+                        )}
                     </form>
                 </div>
             </div>

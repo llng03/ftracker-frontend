@@ -22,24 +22,28 @@ export const addToPots = (year, month, distributeRequest ) => {
     return api.post("/costs/toPots", distributeRequest, {
         params: { year, month }
     })
-}
+};
 
 //PATCH
 export const updateCost = (updateCostRequest, year, month) => {
     return api.patch("/costs/updateCost", updateCostRequest, {
         params: { year, month }
     })
-}
+};
+
+export const updateFixedCost = (updateFixedCostRequest) => {
+    return api.patch("/costs/updateFixedCost", updateFixedCostRequest)
+};
 
 //DELETE
 export const deleteFixedCost = (costId) => {
     return api.delete("/costs/deleteFixedCost", {
         params: {costId}
     })
-}
+};
 
 export const deleteCost = (costId, year, month) =>  {
     return api.delete("/costs/deleteCost", {
         params: { costId, year, month }
     })
-}
+};
