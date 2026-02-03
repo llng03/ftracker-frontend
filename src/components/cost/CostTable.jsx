@@ -1,7 +1,11 @@
 import './CostTable.css'
+import { useState } from 'react'
 import { deleteCost } from '../../api/costApi'
+import { UpdateCostModal } from './UpdateCostModal'
 
 export function CostTable({ costs, sum, isIncome, correctMode, year, month, loadMonthOverview }) {
+    const [showUpdateCost, setShowUpdateCost] = useState(null);
+
     function handleDelete(costId) {
         if (window.confirm("Willst du diesen Eintrag wirklich löschen?")) {
             deleteCost(costId, year, month)
@@ -10,6 +14,11 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
                     err.response?.data?.message || err.message
                 ));
         }
+    }
+
+    function onPatchSubmit() {
+        setShowUpdateCost(null);
+        loadMonthOverview()
     }
 
     return (
@@ -21,7 +30,10 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
                         <th>{isIncome? "Einnahme" : "Ausgabe"}</th>
                         <th>Betrag</th>
                         {correctMode && (
-                            <th></th>
+                            <>
+                                <th></th>
+                                <th></th>
+                            </>
                         )}
                     </tr>
                     </thead>
@@ -31,9 +43,15 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
                                 <td>{cost.descr}</td>
                                 <td>{Number(cost.amount).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</td>
                                 {correctMode && (
-                                    <td>
-                                        <button onClick={() => handleDelete(cost.id)} className="correct-delete-btn">x</button>
-                                    </td>
+                                    <>
+                                        <td>
+                                            <button onClick = {() => setShowUpdateCost(cost)} className="correct-delete-btn">🖌️</button>
+                                        </td>
+                                        
+                                        <td>
+                                            <button onClick={() => handleDelete(cost.id)} className="correct-delete-btn">x</button>
+                                        </td>
+                                    </>
                                 )}
                             </tr>
                         )}
@@ -43,6 +61,18 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
                     <b>Summe: </b>
                     <span>{sum.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</span>
                 </div>
+
+                {showUpdateCost &&
+                    <UpdateCostModal 
+                        cost= {showUpdateCost}
+                        setShowUpdateCost={setShowUpdateCost}
+                        onPatchSubmit = {onPatchSubmit}
+                        year = {year}
+                        month = {month}
+                    />
+                }
+
+                
             </div>
         </div>
     );
