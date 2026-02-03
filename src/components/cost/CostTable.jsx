@@ -1,6 +1,16 @@
 import './CostTable.css'
+import { deleteCost } from '../../api/costApi'
 
-export function CostTable({ costs, sum, isIncome, showDelColumn }) {
+export function CostTable({ costs, sum, isIncome, correctMode, year, month, loadMonthOverview }) {
+    function handleDelete(costId) {
+        if (window.confirm("Willst du diesen Eintrag wirklich löschen?")) {
+            deleteCost(costId, year, month)
+                .then(() => loadMonthOverview())
+                .catch(err => alert("Fehler beim Löschen: " + 
+                    err.response?.data?.message || err.message
+                ));
+        }
+    }
 
     return (
         <div>
@@ -10,7 +20,7 @@ export function CostTable({ costs, sum, isIncome, showDelColumn }) {
                     <tr>
                         <th>{isIncome? "Einnahme" : "Ausgabe"}</th>
                         <th>Betrag</th>
-                        {showDelColumn && (
+                        {correctMode && (
                             <th></th>
                         )}
                     </tr>
@@ -20,11 +30,9 @@ export function CostTable({ costs, sum, isIncome, showDelColumn }) {
                             <tr key={cost.id}>
                                 <td>{cost.descr}</td>
                                 <td>{Number(cost.amount).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</td>
-                                {showDelColumn && (
+                                {correctMode && (
                                     <td>
-                                
-                                        <button type="submit" className="delete-btn">x</button>
-
+                                        <button onClick={() => handleDelete(cost.id)} className="correct-delete-btn">x</button>
                                     </td>
                                 )}
                             </tr>

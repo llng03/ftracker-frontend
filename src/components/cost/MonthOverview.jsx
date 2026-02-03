@@ -11,7 +11,6 @@ import { FixedCostFormButtons } from './FixedCostFormButtons.jsx';
 
 export function MonthOverview() {
     const[monthData, setMonthData] = useState(null);
-    const[showDelColumn, setShowDelColumn] = useState(false);
     const [showOverview, setShowOverview] = useState(false);
     const [showToPots, setShowToPots] = useState(false);
     const [showFixedIncomeForm, setShowFixedIncomeForm] = useState(false);
@@ -98,7 +97,10 @@ export function MonthOverview() {
                 sumIn = {monthData.sumIn}
                 sumOut = {monthData.sumOut}
                 difference = {monthData.difference}
-                showDelColumn = {showDelColumn}
+                correctMode = {correctMode}
+                year= {year}
+                month= {month}
+                loadMonthOverview = {loadMonthOverview}
             />
 
             {showOverview && (

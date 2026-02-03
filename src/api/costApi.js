@@ -30,3 +30,9 @@ export const deleteFixedCost = (costId) => {
         params: {costId}
     })
 }
+
+export const deleteCost = (costId, year, month) =>  {
+    return api.delete("/costs/deleteCost", {
+        params: { costId, year, month }
+    })
+}
