@@ -84,11 +84,13 @@ export function MonthOverview() {
                 onSuccess={loadMonthOverview}
                 year={year}
                 month={month}
+                correctMode={correctMode}
             />
 
             <FixedCostFormButtons
                 setShowFixedIncomeForm={setShowFixedIncomeForm}
                 setShowFixedExpForm={setShowFixedExpForm}
+                correctMode={correctMode}
             />
 
             <CostTables 

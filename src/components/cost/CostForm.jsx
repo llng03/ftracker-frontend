@@ -1,7 +1,7 @@
 import { createMonthsCost } from "../../api/costApi";
 import { useState } from 'react'
 
-export function CostForm({ isIncome, onSuccess, year, month }) {
+export function CostForm({ isIncome, onSuccess, year, month, correctMode }) {
     const initialFormState = {
         descr: "",
         amount: "",
@@ -38,6 +38,7 @@ export function CostForm({ isIncome, onSuccess, year, month }) {
             <div className="form-field">
                 <label htmlFor="descr">{isIncome ? "Einnahme" : "Ausgabe"}:</label>
                 <input 
+                    disabled = {correctMode}
                     type="text"
                     id="descr"
                     placeholder="z.B. Einkauf bei Aldi" 
@@ -49,6 +50,7 @@ export function CostForm({ isIncome, onSuccess, year, month }) {
             <div className="form-field">
                 <label htmlFor="amount">Kosten (in €):</label>
                 <input 
+                    disabled = {correctMode}
                     type="number" 
                     id="amount" 
                     value={formData.amount} 
@@ -58,8 +60,13 @@ export function CostForm({ isIncome, onSuccess, year, month }) {
                     onChange={handleChange}
                 />
             </div>
-
-            <button type="submit">Hinzufügen</button>
+            <div className={correctMode ? "correct-mode" : ""}>
+                <button 
+                    disabled={correctMode}
+                    type="submit"
+                >Hinzufügen</button>
+            </div>
+            
             {error && (
                 <div className="error">
                     <p>{error}</p>

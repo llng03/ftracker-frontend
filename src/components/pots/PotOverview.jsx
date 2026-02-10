@@ -71,6 +71,7 @@ export function PotOverview() {
             <PotContainer  
                 pots={potData.pots} 
                 loadPotOverview = {loadPotOverview}
+                correctMode = {correctMode}
             />
 
             {showDistributeModal && (

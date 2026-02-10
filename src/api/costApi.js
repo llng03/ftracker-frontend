@@ -47,3 +47,9 @@ export const deleteCost = (costId, year, month) =>  {
         params: { costId, year, month }
     })
 };
+
+export const deletePotEntry = (deleteEntryRequest) => {
+    return api.delete("/costs/deletePotEntry", { 
+        data: deleteEntryRequest
+    })
+};

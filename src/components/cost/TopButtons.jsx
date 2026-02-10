@@ -11,9 +11,11 @@ export function TopButtons({ setShowOverview, setShowToPots, correctMode, toggle
                     <button onClick={() =>
                         setShowOverview(true)
                     }>Überblick Feste Einnahmen und Ausgaben</button>
-                    <button onClick={() =>
-                        setShowToPots(true)
-                    }>Geld auf Pots verteilen</button>
+                    <div className={correctMode ? "correct-mode" : ""}>
+                        <button disabled = {correctMode} onClick={() =>
+                            setShowToPots(true)
+                        }>Geld auf Pots verteilen</button>
+                    </div>
                     <button onClick={ () =>
                         toggleCorrectMode()
                     }>{correctMode ? "Korrekturmodus beenden" : "Korrekturmodus"}</button>

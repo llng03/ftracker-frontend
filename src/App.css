@@ -166,3 +166,8 @@ textarea {
     background-color: #E57373
 
 }
+
+.correct-mode button {
+    pointer-events: none;
+    opacity: 0.6; /* optional visuelles Feedback */
+}
