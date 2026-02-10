@@ -1,9 +1,11 @@
 import { deleteFixedCost } from "../../api/costApi";
 import {useState}  from 'react'
 import { UpdateFixedCostModal } from "./UpdateFixedCostModal";
+import { SetEndMonthModal } from "./SetEndMonthModal";
 
 export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOverview }) {
     const [showUpdateFixedCost, setShowUpdateFixedCost] = useState(null);
+    const [showSetEndMonth, setShowSetEndMonth] = useState(null);;
 
     function handleDelete(costId) {
         if (window.confirm("Willst du diesen Eintrag wirklich löschen?")) {
@@ -16,6 +18,7 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOver
     }
     function onPatchSuccess() {
         setShowUpdateFixedCost(null);
+        setShowSetEndMonth(null);
         loadMonthOverview();
     }
     return (
@@ -44,7 +47,9 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOver
                             <td>{fCost.frequency}</td>
                             <td>{fCost.startYear + "-" + fCost.startMonth}</td>
                             <td>
-                                {fCost.endMonth != null ? fCost.endYear + "-" + fCost.endMonth : '-'}
+                                {fCost.endMonth != null ? 
+                                    fCost.endYear + "-" + fCost.endMonth : 
+                                    <button onClick={() => setShowSetEndMonth(fCost)}>+</button>}
                             </td>
                             {correctMode &&
                                 <>
@@ -68,6 +73,14 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOver
                     setShowUpdateFixedCost = {setShowUpdateFixedCost}
                 />
             )}
+             {showSetEndMonth && (
+                <SetEndMonthModal
+                    fCost = {showSetEndMonth}
+                    setShowSetEndMonth = {setShowSetEndMonth}
+                    onPatchSuccess = {onPatchSuccess}
+                />
+            )}
+        
         </>
     );
 }

@@ -35,6 +35,7 @@ export const updateFixedCost = (updateFixedCostRequest) => {
     return api.patch("/costs/updateFixedCost", updateFixedCostRequest)
 };
 
+
 //DELETE
 export const deleteFixedCost = (costId) => {
     return api.delete("/costs/deleteFixedCost", {
