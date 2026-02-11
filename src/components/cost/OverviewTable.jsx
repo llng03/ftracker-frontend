@@ -1,11 +1,13 @@
 import { deleteFixedCost } from "../../api/costApi";
 import {useState}  from 'react'
-import { UpdateFixedCostModal } from "./UpdateFixedCostModal";
-import { SetEndMonthModal } from "./SetEndMonthModal";
+import { FixedCostFormModal } from "./modals/FixedCostFormModal";
+import { updateFixedCost } from '../../api/costApi.js';
+import { changeFixedCost } from '../../api/costApi.js';
 
 export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOverview }) {
     const [showUpdateFixedCost, setShowUpdateFixedCost] = useState(null);
     const [showSetEndMonth, setShowSetEndMonth] = useState(null);;
+    const [showChangeFixedCost, setShowChangeFixedCost] = useState(null);
 
     function handleDelete(costId) {
         if (window.confirm("Willst du diesen Eintrag wirklich löschen?")) {
@@ -26,6 +28,7 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOver
             <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>{isIncome ? "Einnahme": "Ausgabe"}</th>
                         <th>Betrag</th>
                         <th>Frequenz</th>
@@ -42,6 +45,12 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOver
                 <tbody>
                     {fixedCosts.map( fCost =>
                         <tr key={fCost.id}>
+                            <td className={correctMode ? "correct-mode" : ""}>
+                                <button 
+                                    onClick = {() => setShowChangeFixedCost(fCost)}
+                                    disabled = {correctMode}
+                                >✏️</button>
+                            </td>
                             <td>{fCost.descr}</td>
                             <td>{fCost.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</td>
                             <td>{fCost.frequency}</td>
@@ -67,20 +76,33 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOver
                 </tbody>
             </table>
             {showUpdateFixedCost && (
-                <UpdateFixedCostModal 
+                <FixedCostFormModal
+                    showModal = {setShowUpdateFixedCost}
+                    onSuccess = {onPatchSuccess}
+                    sendData = {updateFixedCost}
                     fCost = {showUpdateFixedCost}
-                    onPatchSuccess = {onPatchSuccess}
-                    setShowUpdateFixedCost = {setShowUpdateFixedCost}
+                    endMonth = {false}
+                    change = {false}
                 />
             )}
              {showSetEndMonth && (
-                <SetEndMonthModal
+                <FixedCostFormModal
+                    showModal = {setShowSetEndMonth}
+                    onSuccess = {onPatchSuccess}
+                    sendData = {updateFixedCost}
                     fCost = {showSetEndMonth}
-                    setShowSetEndMonth = {setShowSetEndMonth}
-                    onPatchSuccess = {onPatchSuccess}
+                    endMonth = {true}
+                    change = {false}
                 />
             )}
-        
-        </>
-    );
-}
+            {showChangeFixedCost && (
+                <FixedCostFormModal
+                    showModal = {setShowChangeFixedCost}
+                    onSuccess = {onPatchSuccess}
+                    sendData = {changeFixedCost}
+                    fCost = {showChangeFixedCost}
+                    endMonth = {false}
+                    change = {true}
+                />
+            )}
+        </>)}

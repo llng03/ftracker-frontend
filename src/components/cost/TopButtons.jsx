@@ -12,8 +12,8 @@ export function TopButtons({ setShowOverview, setShowToPots, correctMode, toggle
                         setShowOverview(true)
                     }>Überblick Feste Einnahmen und Ausgaben</button>
                     <div className={correctMode ? "correct-mode" : ""}>
-                        <button disabled = {correctMode} onClick={() =>
-                            setShowToPots(true)
+                        <button disabled = {correctMode} 
+                            onClick={() => setShowToPots(true)
                         }>Geld auf Pots verteilen</button>
                     </div>
                     <button onClick={ () =>

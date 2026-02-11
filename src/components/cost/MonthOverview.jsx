@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { getMonthOverview, createFixedCost } from '../../api/costApi.js'
+import { getMonthOverview } from '../../api/costApi.js'
 import { MonthHeader } from './MonthHeader.jsx';
 import { CostTables } from './CostTables.jsx' ;
 import { TopButtons } from './TopButtons.jsx';
 import { OverviewModal } from './OverviewModal.jsx';
 import { ToPotsModal } from './ToPotsModal.jsx';
-import { FixedCostFormModal } from './FixedCostFormModal.jsx'
+import { FixedCostFormModal } from './modals/FixedCostFormModal.jsx'
 import { CostForms } from './CostForms.jsx'
 import { FixedCostFormButtons } from './FixedCostFormButtons.jsx';
+import { createFixedCost } from '../../api/costApi.js'
 
 export function MonthOverview() {
     const[monthData, setMonthData] = useState(null);
@@ -126,19 +127,23 @@ export function MonthOverview() {
             
             {showFixedIncomeForm && (
                 <FixedCostFormModal 
-                    setShowFixedCostForm = {setShowFixedIncomeForm}
-                    createFixedCost = {createFixedCost}
+                    showModal = {setShowFixedIncomeForm}
                     isIncome = {true}
                     onSuccess={loadMonthOverview}
+                    sendData = {createFixedCost}
+                    endMonth = {false}
+                    change = {false}
                 />
             )}
 
             {showFixedExpForm && (
                 <FixedCostFormModal
-                    setShowFixedCostForm = {setShowFixedExpForm}
-                    createFixedCost = {createFixedCost}
+                    showModal = {setShowFixedExpForm}
                     isIncome = {false}
                     onSuccess={loadMonthOverview}
+                    sendData = {createFixedCost}
+                    endMonth = {false}
+                    change = {false}
                 />
             )}
         </div>

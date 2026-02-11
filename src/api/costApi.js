@@ -24,6 +24,12 @@ export const addToPots = (year, month, distributeRequest ) => {
     })
 };
 
+export const changeFixedCost = (changeFixedCostRequest, changeMonth) => {
+    return api.post("/costs/changeFixedCost", changeFixedCostRequest, {
+        params: {changeMonth}
+    })
+}
+
 //PATCH
 export const updateCost = (updateCostRequest, year, month) => {
     return api.patch("/costs/updateCost", updateCostRequest, {
