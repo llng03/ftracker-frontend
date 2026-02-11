@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { addPot } from '../../api/potApi'
+import { addPot } from '../../../api/potApi'
 
 export function CreatePotModal({ setShowCreatePotModal, onSuccess }) {
     const [error, setError] = useState(null);

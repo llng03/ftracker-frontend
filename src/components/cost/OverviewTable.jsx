@@ -4,7 +4,7 @@ import { FixedCostFormModal } from "./modals/FixedCostFormModal";
 import { updateFixedCost } from '../../api/costApi.js';
 import { changeFixedCost } from '../../api/costApi.js';
 
-export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOverview }) {
+export function OverviewTable({ fixedCosts, isIncome, correctMode, reloadOverview }) {
     const [showUpdateFixedCost, setShowUpdateFixedCost] = useState(null);
     const [showSetEndMonth, setShowSetEndMonth] = useState(null);;
     const [showChangeFixedCost, setShowChangeFixedCost] = useState(null);
@@ -12,7 +12,7 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOver
     function handleDelete(costId) {
         if (window.confirm("Willst du diesen Eintrag wirklich löschen?")) {
             deleteFixedCost(costId)
-                .then(() => loadMonthOverview())
+                .then(() => reloadOverview())
                 .catch(err => alert("Fehler beim Löschen: " + 
                     err.response?.data?.message || err.message
                 ));
@@ -21,7 +21,7 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, loadMonthOver
     function onPatchSuccess() {
         setShowUpdateFixedCost(null);
         setShowSetEndMonth(null);
-        loadMonthOverview();
+        reloadOverview();
     }
     return (
         <>

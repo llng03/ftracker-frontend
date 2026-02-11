@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { updateCost } from '../../api/costApi'
+import { updateCost } from '../../../api/costApi'
 
 export function UpdateCostModal({cost, setShowUpdateCost, onPatchSubmit, year, month}) {
     const [error, setError] = useState(null);

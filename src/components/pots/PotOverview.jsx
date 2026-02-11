@@ -1,8 +1,8 @@
 import { TopButtonsPots } from './TopButtonsPots.jsx'
 import { getPotOverview } from '../../api/potApi.js'
 import { PotContainer } from './PotContainer.jsx'
-import { DistributeModal } from './DistributeModal.jsx'
-import { CreatePotModal } from './CreatePotModal.jsx'
+import { DistributeModal } from './modals/DistributeModal.jsx'
+import { CreatePotModal } from './modals/CreatePotModal.jsx'
 import { useState, useEffect } from 'react'
 
 export function PotOverview() {

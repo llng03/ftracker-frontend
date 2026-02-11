@@ -1,7 +1,7 @@
 import './CostTable.css'
 import { useState } from 'react'
 import { deleteCost } from '../../api/costApi'
-import { UpdateCostModal } from './UpdateCostModal'
+import { UpdateCostModal } from './modals/UpdateCostModal'
 
 export function CostTable({ costs, sum, isIncome, correctMode, year, month, loadMonthOverview }) {
     const [showUpdateCost, setShowUpdateCost] = useState(null);

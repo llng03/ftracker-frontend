@@ -1,5 +1,5 @@
-import { getPotList } from '../../api/potApi.js'
-import { addToPots } from '../../api/costApi.js'
+import { getPotList } from '../../../api/potApi.js'
+import { addToPots } from '../../../api/costApi.js'
 import { useState, useEffect } from 'react'
 
 export function ToPotsModal({ setShowToPots, year, month, onSuccess }) {

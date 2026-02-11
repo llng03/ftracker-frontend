@@ -3,8 +3,8 @@ import { getMonthOverview } from '../../api/costApi.js'
 import { MonthHeader } from './MonthHeader.jsx';
 import { CostTables } from './CostTables.jsx' ;
 import { TopButtons } from './TopButtons.jsx';
-import { OverviewModal } from './OverviewModal.jsx';
-import { ToPotsModal } from './ToPotsModal.jsx';
+import { OverviewModal } from './modals/OverviewModal.jsx';
+import { ToPotsModal } from './modals/ToPotsModal.jsx';
 import { FixedCostFormModal } from './modals/FixedCostFormModal.jsx'
 import { CostForms } from './CostForms.jsx'
 import { FixedCostFormButtons } from './FixedCostFormButtons.jsx';
@@ -109,8 +109,8 @@ export function MonthOverview() {
             {showOverview && (
                 <OverviewModal 
                     setShowOverview = {setShowOverview}
-                    fixedIncome = {monthData.fixedIncome}
-                    fixedExpense = {monthData.fixedExpense}
+                    year = {year}
+                    month = {month}
                     correctMode = {correctMode}
                     loadMonthOverview = {loadMonthOverview}
                 />

@@ -1,4 +1,4 @@
-import { distribute } from "../../api/potApi.js";
+import { distribute } from "../../../api/potApi.js";
 import { useState } from 'react';
 
 

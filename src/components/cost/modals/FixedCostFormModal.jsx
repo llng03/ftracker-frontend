@@ -95,7 +95,7 @@ export function FixedCostFormModal({ isIncome, showModal, onSuccess, sendData, f
                             id="change-month"
                             required
                             value = {changeMonth}
-                            onChange = {setChangeMonth}
+                            onChange = {(e) => setChangeMonth(e.target.value)}
                         />
                     </>
                 )}
