@@ -23,6 +23,21 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, reloadOvervie
         setShowSetEndMonth(null);
         reloadOverview();
     }
+    function toGermanString(frequency) {
+        switch (frequency) {
+            case "MONTHLY":
+                return "monatlich";
+            case "QUARTERLY":
+                return "vierteljährlich";
+            case "HALF_YEARLY":
+                return "halbjährlich";
+            case "YEARLY":
+                return "jährlich";
+            default:
+                return frequency;
+        }
+    }
+
     return (
         <>
             <table>
@@ -53,7 +68,7 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, reloadOvervie
                             </td>
                             <td>{fCost.descr}</td>
                             <td>{fCost.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</td>
-                            <td>{fCost.frequency}</td>
+                            <td>{toGermanString(fCost.frequency)}</td>
                             <td>{fCost.startYear + "-" + fCost.startMonth}</td>
                             <td>
                                 {fCost.endMonth != null ? 
