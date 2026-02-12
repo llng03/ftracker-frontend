@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getMonthOverview } from '../../api/costApi.js'
 import { MonthHeader } from './MonthHeader.jsx';
-import { CostTables } from './CostTables.jsx' ;
 import { TopButtons } from './TopButtons.jsx';
 import { OverviewModal } from './modals/OverviewModal.jsx';
 import { ToPotsModal } from './modals/ToPotsModal.jsx';
@@ -9,6 +8,7 @@ import { FixedCostFormModal } from './modals/FixedCostFormModal.jsx'
 import { CostForms } from './CostForms.jsx'
 import { FixedCostFormButtons } from './FixedCostFormButtons.jsx';
 import { createFixedCost } from '../../api/costApi.js'
+import { ShowCosts } from './ShowCosts.jsx';
 
 export function MonthOverview() {
     const[monthData, setMonthData] = useState(null);
@@ -94,15 +94,17 @@ export function MonthOverview() {
                 correctMode={correctMode}
             />
 
-            <CostTables 
-                allMonthsIncome = {monthData.allMonthsIncome}
-                allMonthsExpense = {monthData.allMonthsExpense}
+            <ShowCosts
+                monthsIncome = {monthData.monthsIncome}
+                monthsExpense = {monthData.monthsExpense}
+                monthsFixedIncome = {monthData.monthsFixedIncome}
+                monthsFixedExpense = {monthData.monthsFixedExpense}
                 sumIn = {monthData.sumIn}
                 sumOut = {monthData.sumOut}
                 difference = {monthData.difference}
                 correctMode = {correctMode}
-                year= {year}
-                month= {month}
+                year = {year}
+                month = {month}
                 loadMonthOverview = {loadMonthOverview}
             />
 

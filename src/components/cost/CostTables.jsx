@@ -1,7 +1,6 @@
 import { CostTable } from "./CostTable";
-import './CostTables.css'
 
-export function CostTables({ allMonthsIncome, allMonthsExpense, sumIn, sumOut, 
+export function CostTables({ monthsIncome, monthsExpense, sumIn, sumOut, 
     difference, correctMode, year, month, loadMonthOverview }) {
     return (
         <>
@@ -11,7 +10,7 @@ export function CostTables({ allMonthsIncome, allMonthsExpense, sumIn, sumOut,
             </div>
             <div className="tables-container">
                 <CostTable 
-                    costs = {allMonthsIncome}
+                    costs = {monthsIncome}
                     sum = {sumIn}
                     isIncome = {true}
                     correctMode={correctMode}
@@ -21,7 +20,7 @@ export function CostTables({ allMonthsIncome, allMonthsExpense, sumIn, sumOut,
 
                 />
                 <CostTable
-                    costs = {allMonthsExpense}
+                    costs = {monthsExpense}
                     sum = {sumOut}
                     isIncome = {false}
                     correctMode = {correctMode}

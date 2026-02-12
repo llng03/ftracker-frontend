@@ -1,0 +1,14 @@
+.tables-grid {
+    display: grid;
+    grid-template-columns: max-content max-content; 
+    column-gap: 24px;
+    row-gap: 1px;   /* kleiner */
+    justify-content: center;
+    align-items: start;
+}
+
+.fixed-diff {
+    grid-column: span 2;     /* <- über beide Spalten */
+    text-align: center;      /* <- mittig */
+    font-weight: bold;
+}
