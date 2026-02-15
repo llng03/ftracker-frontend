@@ -29,9 +29,9 @@ export function OverviewTable({ fixedCosts, isIncome, correctMode, reloadOvervie
                 return "monatlich";
             case "QUARTERLY":
                 return "vierteljährlich";
-            case "HALF_YEARLY":
+            case "SEMI_ANNUAL":
                 return "halbjährlich";
-            case "YEARLY":
+            case "ANNUAL":
                 return "jährlich";
             default:
                 return frequency;

@@ -36,6 +36,12 @@ export const changeFixedCost = (changeFixedCostRequest, changeMonth) => {
     })
 }
 
+export const addNewCategory = (categoryName) => {
+    return api.post("/costs/newCategory",  null, {
+        params: {categoryName}
+    })
+}
+
 //PATCH
 export const updateCost = (updateCostRequest, year, month) => {
     return api.patch("/costs/updateCost", updateCostRequest, {

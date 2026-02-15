@@ -85,6 +85,7 @@ export function MonthOverview() {
                 onSuccess={loadMonthOverview}
                 year={year}
                 month={month}
+                categories={monthData.allCategories}
                 correctMode={correctMode}
             />
 
