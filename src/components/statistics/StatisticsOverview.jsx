@@ -1,11 +1,29 @@
 import { MonthHeader } from "../MonthHeader";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { getStatisticsOverview } from "../../api/statisticsApi.js";
+import { StatisticsMap } from "./StatisticsMap.jsx";
 
 export function StatisticsOverview() {
     const [month, setMonth] = useState(new Date().getMonth() + 1);
     const [year, setYear] = useState(new Date().getFullYear());
 
+    const[statisticsData, setStatisticsData] = useState(null);
+
+    useEffect(() => {
+        getStatisticsOverview(year, month)
+        .then(response => {
+            setStatisticsData(response.data);
+        })
+        .catch(err => console.error(err));
+    }, [year, month]);
+
+    const loadStatisticsOverview = async (year, month) => {
+        return getStatisticsOverview(year, month)
+            .then(response => {
+                setStatisticsData(response.data);
+            })
+            .catch(err => console.error(err));
+    };
 
     return (
         <>
@@ -15,6 +33,9 @@ export function StatisticsOverview() {
                 currYear={year}
                 setMonth={setMonth}
                 setYear={setYear}
+            />
+            <StatisticsMap
+                categoryMap={statisticsData?.costSumPerCategory ?? {}}
             />
         </>
     );
