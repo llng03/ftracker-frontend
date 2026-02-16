@@ -7,6 +7,7 @@ export function TopButtons({ setShowOverview, setShowToPots, correctMode, toggle
         <>
             <div className="top-button-container">
                 <a href="/pots" className="top-button-left">&rarr; Zu den Pots</a>
+                <a href="/statistics" className="top-button-left">&rarr; Zu den Statistiken</a>
                 <div className="top-button-right">
                     <button onClick={() =>
                         setShowOverview(true)
@@ -19,6 +20,7 @@ export function TopButtons({ setShowOverview, setShowToPots, correctMode, toggle
                     <button onClick={ () =>
                         toggleCorrectMode()
                     }>{correctMode ? "Korrekturmodus beenden" : "Korrekturmodus"}</button>
+            
                 </div>
             </div>
         </>

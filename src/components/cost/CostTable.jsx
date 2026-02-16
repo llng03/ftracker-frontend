@@ -41,7 +41,6 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
                     <tbody>
                         
                         {costs.map(cost =>
-
                             <tr key={cost.id}>
                                 <td>{cost.descr}</td>
                                 <td>{cost.category.categoryName}</td>
