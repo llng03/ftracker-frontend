@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { deleteCost } from '../../api/costApi'
 import { UpdateCostModal } from './modals/UpdateCostModal'
 
-export function CostTable({ costs, sum, isIncome, correctMode, year, month, loadMonthOverview }) {
+export function CostTable({ costs, sum, isIncome, correctMode, year, month, loadMonthOverview, categories }) {
     const [showUpdateCost, setShowUpdateCost] = useState(null);
 
     function handleDelete(costId) {
@@ -20,7 +20,6 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
         setShowUpdateCost(null);
         loadMonthOverview()
     }
-    costs.forEach(c => console.log("category: " + c.categoryName));
 
     return (
         <div>
@@ -74,6 +73,7 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
                         onPatchSubmit = {onPatchSubmit}
                         year = {year}
                         month = {month}
+                        categories = {categories}
                     />
                 }
 

@@ -107,6 +107,7 @@ export function MonthOverview() {
                 year = {year}
                 month = {month}
                 loadMonthOverview = {loadMonthOverview}
+                categories={monthData.allCategories}
             />
 
             {showOverview && (

@@ -1,7 +1,7 @@
 import { CostTable } from "./CostTable";
 
 export function CostTables({ monthsIncome, monthsExpense, sumIn, sumOut, 
-    difference, correctMode, year, month, loadMonthOverview }) {
+    difference, correctMode, year, month, loadMonthOverview, categories }) {
     return (
         <>
             <div className="diff">
@@ -17,6 +17,7 @@ export function CostTables({ monthsIncome, monthsExpense, sumIn, sumOut,
                     year = {year}
                     month = {month}
                     loadMonthOverview = {loadMonthOverview}
+                    categories={categories}
 
                 />
                 <CostTable
@@ -27,7 +28,9 @@ export function CostTables({ monthsIncome, monthsExpense, sumIn, sumOut,
                     year = {year}
                     month = {month}
                     loadMonthOverview = {loadMonthOverview}
+                    categories={categories}
                 />
+            
             </div>
         </>
 

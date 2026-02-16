@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { updateCost } from '../../../api/costApi'
 
-export function UpdateCostModal({cost, setShowUpdateCost, onPatchSubmit, year, month}) {
+export function UpdateCostModal({cost, setShowUpdateCost, onPatchSubmit, year, month, categories}) {
     const [error, setError] = useState(null);
     const [updateCostRequest, setUpdateCostRequest] = useState({
         costId: cost.id,
         descr: cost.descr,
-        amount: cost.amount
+        amount: cost.amount,
+        category: cost.category ? cost.category.categoryName : "default"
     });
 
     const handleSubmit = async (e) => {
@@ -46,6 +47,16 @@ export function UpdateCostModal({cost, setShowUpdateCost, onPatchSubmit, year, m
                             step="0.01" 
                             min="0" 
                         ></input>
+
+                        <div className="form-field">
+                            <label htmlFor="cateogory">Kategorie: </label>
+                            <select id="category" value={updateCostRequest.category} onChange={handleChange}>
+                                <option value="">-- keine Kategorie --</option>
+                                {categories.map(category => 
+                                    <option key={category} value={category}>{category}</option>
+                                )}
+                            </select>
+                        </div>
                         <button type="submit">Eintrag ändern</button>
                         {error && (
                             <div className="error">

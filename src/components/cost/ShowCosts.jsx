@@ -5,7 +5,7 @@ import { CostTable } from "./CostTable";
 import './ShowCosts.css'
 
 export function ShowCosts( { monthsIncome, monthsExpense, monthsFixedIncome, monthsFixedExpense, 
-    sumIn, sumOut, difference, correctMode, year, month, loadMonthOverview }) {
+    sumIn, sumOut, difference, correctMode, year, month, loadMonthOverview, categories }) {
     
     const differenceFixedCosts = () => {
         let fixedIncomeSum = monthsFixedIncome.reduce((acc, curr) => acc + Number(curr.amount), 0);
@@ -36,6 +36,7 @@ export function ShowCosts( { monthsIncome, monthsExpense, monthsFixedIncome, mon
                     year = {year}
                     month = {month}
                     loadMonthOverview = {loadMonthOverview}
+                    categories={categories}
                 />
 
                 <CostTable
@@ -46,6 +47,7 @@ export function ShowCosts( { monthsIncome, monthsExpense, monthsFixedIncome, mon
                     year = {year}
                     month = {month}
                     loadMonthOverview = {loadMonthOverview}
+                    categories={categories}
                 />
             </div>
             <div className="diff">
