@@ -20,6 +20,7 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
         setShowUpdateCost(null);
         loadMonthOverview()
     }
+    costs.forEach(c => console.log("category: " + c.categoryName));
 
     return (
         <div>
@@ -28,6 +29,7 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
                     <thead>
                     <tr>
                         <th>{isIncome? "Einnahme" : "Ausgabe"}</th>
+                        <th>Kategorie</th>
                         <th>Betrag</th>
                         {correctMode && (
                             <>
@@ -38,9 +40,12 @@ export function CostTable({ costs, sum, isIncome, correctMode, year, month, load
                     </tr>
                     </thead>
                     <tbody>
+                        
                         {costs.map(cost =>
+
                             <tr key={cost.id}>
                                 <td>{cost.descr}</td>
+                                <td>{cost.category.categoryName}</td>
                                 <td>{Number(cost.amount).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</td>
                                 {correctMode && (
                                     <>
