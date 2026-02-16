@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getMonthOverview } from '../../api/costApi.js'
-import { MonthHeader } from './MonthHeader.jsx';
+import { MonthHeader } from '../MonthHeader.jsx';
 import { TopButtons } from './TopButtons.jsx';
 import { OverviewModal } from './modals/OverviewModal.jsx';
 import { ToPotsModal } from './modals/ToPotsModal.jsx';

@@ -1,6 +1,6 @@
 import './MonthHeader.css'
 import { useState } from 'react';
-import { MonthPickerModal } from './modals/MonthPickerModal.jsx';
+import { MonthPickerModal } from './cost/modals/MonthPickerModal.jsx';
 
 export function MonthHeader({ currMonth, currYear, setMonth, setYear }) {
     const months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
