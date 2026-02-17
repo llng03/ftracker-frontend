@@ -2,6 +2,8 @@ import { MonthHeader } from "../MonthHeader";
 import { useState, useEffect } from "react";
 import { getStatisticsOverview } from "../../api/statisticsApi.js";
 import { StatisticsMap } from "./StatisticsMap.jsx";
+import { BackButton } from "./BackButton.jsx";
+import { ExpenseSum } from "./ExpenseSum.jsx";
 
 export function StatisticsOverview() {
     const [month, setMonth] = useState(new Date().getMonth() + 1);
@@ -33,6 +35,11 @@ export function StatisticsOverview() {
                 currYear={year}
                 setMonth={setMonth}
                 setYear={setYear}
+            />
+            <BackButton />
+            <ExpenseSum 
+                sum={statisticsData?.expenseSum ?? 0} 
+                differenceSum={statisticsData?.differenceSum ?? 0}
             />
             <StatisticsMap
                 categoryMap={statisticsData?.costSumPerCategory ?? {}}
