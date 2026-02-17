@@ -11,6 +11,8 @@ export function StatisticsOverview() {
 
     const[statisticsData, setStatisticsData] = useState(null);
 
+    
+
     useEffect(() => {
         getStatisticsOverview(year, month)
         .then(response => {
@@ -26,6 +28,9 @@ export function StatisticsOverview() {
             })
             .catch(err => console.error(err));
     };
+
+
+    
 
     return (
         <>
@@ -44,6 +49,7 @@ export function StatisticsOverview() {
             <StatisticsMap
                 categoryMap={statisticsData?.costSumPerCategory ?? {}}
             />
+
         </>
     );
 }
