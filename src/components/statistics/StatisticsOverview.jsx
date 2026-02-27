@@ -5,7 +5,7 @@ import { StatisticsMap } from "./StatisticsMap.jsx";
 import { BackButton } from "./BackButton.jsx";
 import { ExpenseSum } from "./ExpenseSum.jsx";
 
-export function StatisticsOverview() {
+export function StatisticsOverview( {name} ) {
     const [month, setMonth] = useState(new Date().getMonth() + 1);
     const [year, setYear] = useState(new Date().getFullYear());
 
@@ -21,13 +21,13 @@ export function StatisticsOverview() {
         .catch(err => console.error(err));
     }, [year, month]);
 
-    const loadStatisticsOverview = async (year, month) => {
+    /*const loadStatisticsOverview = async (year, month) => {
         return getStatisticsOverview(year, month)
             .then(response => {
                 setStatisticsData(response.data);
             })
             .catch(err => console.error(err));
-    };
+    };*/
 
 
     
@@ -41,6 +41,7 @@ export function StatisticsOverview() {
                 setMonth={setMonth}
                 setYear={setYear}
             />
+            <p>Hallo {name}, hier deine Statistiken.</p>
             <BackButton />
             <ExpenseSum 
                 sum={statisticsData?.expenseSum ?? 0} 
