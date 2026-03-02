@@ -76,7 +76,12 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
                     </select>
                 </div>
 
-                <button type="button" onClick={() => setShowAddCategory(true)}>+</button>
+                <div className={correctMode ? "correct-mode" : ""}>
+                    <button type="button" 
+                        disabled={correctMode} 
+                        onClick={() => setShowAddCategory(true)}
+                    >+</button>
+                </div>
 
                 <div className={correctMode ? "correct-mode" : ""}>
                     <button 
