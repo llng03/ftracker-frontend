@@ -2,11 +2,11 @@ import { createMonthsCost } from "../../api/costApi";
 import { useState } from 'react'
 import { AddCategoryModal } from "./modals/AddCategoryModal";
 
-export function CostForm({ isIncome, onSuccess, year, month, categories, correctMode }) {
+export function CostForm({ income, onSuccess, year, month, categories, correctMode, user }) {
     const initialFormState = {
         descr: "",
         amount: "",
-        isIncome: isIncome,
+        income: income,
         category: "default"
     }
     const [formData, setFormData] = useState(initialFormState);
@@ -39,9 +39,9 @@ export function CostForm({ isIncome, onSuccess, year, month, categories, correct
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <h2>{isIncome ? "Einnahmen" : "Ausgaben"}</h2>
+                <h2>{income ? "Einnahmen" : "Ausgaben"}</h2>
                 <div className="form-field">
-                    <label htmlFor="descr">{isIncome ? "Einnahme" : "Ausgabe"}:</label>
+                    <label htmlFor="descr">{income ? "Einnahme" : "Ausgabe"}:</label>
                     <input 
                         disabled = {correctMode}
                         type="text"

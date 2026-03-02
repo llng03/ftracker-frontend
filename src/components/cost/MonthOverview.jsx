@@ -10,7 +10,7 @@ import { FixedCostFormButtons } from './FixedCostFormButtons.jsx';
 import { createFixedCost } from '../../api/costApi.js'
 import { ShowCosts } from './ShowCosts.jsx';
 
-export function MonthOverview() {
+export function MonthOverview( user ) {
     const[monthData, setMonthData] = useState(null);
     const [showOverview, setShowOverview] = useState(false);
     const [showToPots, setShowToPots] = useState(false);
@@ -87,6 +87,7 @@ export function MonthOverview() {
                 month={month}
                 categories={monthData.allCategories}
                 correctMode={correctMode}
+                user = {user}
             />
 
             <FixedCostFormButtons

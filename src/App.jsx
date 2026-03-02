@@ -33,7 +33,9 @@ export function App() {
             <Routes>
                 <Route 
                     path="/" 
-                    element={<MonthOverview />} 
+                    element={<MonthOverview 
+                        user = {user}
+                    />} 
                 />
                 <Route 
                     path="/pots" 

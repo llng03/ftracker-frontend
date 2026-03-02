@@ -1,24 +1,26 @@
 import { CostForm } from './CostForm.jsx'
 import './CostForms.css'
 
-export function CostForms({ onSuccess, year, month, categories, correctMode }) {
+export function CostForms({ onSuccess, year, month, categories, correctMode, user }) {
     return (
         <div className="form-container">
             <CostForm 
-                isIncome={true}
+                income={true}
                 onSuccess={onSuccess}
                 year={year}
                 month={month}
                 categories={categories}
                 correctMode={correctMode}
+                user = {user}
             />
             <CostForm 
-                isIncome={false}
+                income={false}
                 onSuccess={onSuccess}
                 year={year}
                 month={month}
                 categories={categories}
                 correctMode={correctMode}
+                user = {user}
             />
         </div>
     );

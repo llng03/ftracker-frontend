@@ -3,24 +3,17 @@ import { addPot } from '../../../api/potApi'
 
 export function CreatePotModal({ setShowCreatePotModal, onSuccess }) {
     const [error, setError] = useState(null);
-    const [newPot, setNewPot] = useState({
-        name: "",
-        entries: []
-    })
+    const [newPotName, setNewPotName] = useState("");
 
     const handleChange = (e) => {
-        const { id, value } = e.target;
-        setNewPot({
-            ...newPot,
-            [id]: value
-        })
+        setNewPotName(e.target.value);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         try {
-            await addPot(newPot);
+            await addPot(newPotName);
             setError(null);
             onSuccess();
         } catch (err) {
@@ -35,7 +28,7 @@ export function CreatePotModal({ setShowCreatePotModal, onSuccess }) {
                 <span className="close" onClick={() => setShowCreatePotModal(false)}>&times;</span>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="name">Name des neuen Pots: </label>
-                    <input type="text"id="name" value={newPot.name} onChange={handleChange} required />
+                    <input type="text"id="name" value={newPotName} onChange={handleChange} required />
                     <button type="submit">Erstellen</button>
                     {error && (
                         <div className="error">
