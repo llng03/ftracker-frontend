@@ -1,10 +1,10 @@
-Financetracker Frontend
+# Financetracker Frontend
 
 React frontend for the Financetracker application.
 
-Main repository:
-(link zum Meta Repo)
+## Main repository:
+(link zum Meta Repo: https://github.com/llng03/Finanztracker)
 
-Setup
+## Setup
 npm install
 npm run dev
