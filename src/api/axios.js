@@ -6,6 +6,17 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+}); 
+
+api.interceptors.request.use((config) => {
+  const token = sessionStorage.getItem("demo_token");
+  if(token) {
+    config.headers = config.headers || {};
+    config.headers.Authorization = `Bearer ${token}`;
+  } else {
+    if (config.headers?.Authorization) delete config.headers.Authorization;
+  }
+  return config;
 });
 
 export default api;
