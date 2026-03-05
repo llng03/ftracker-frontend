@@ -1,0 +1,28 @@
+.fixed-income {
+    color: darkgreen;
+    text-align: center;
+    background: transparent;
+}
+.fixed-expense {
+    color: red;
+    text-align: center;
+    background: transparent;
+}
+
+
+.fixed-expense, 
+.fixed-income {
+    width: max-content;      /* <- Tabelle schrumpft auf Inhalt */
+    justify-self: start;     /* <- nicht stretchen */
+    border-collapse: collapse;
+}
+
+.fixed-income td,
+.fixed-income th,
+.fixed-expense td,
+.fixed-expense th {
+    padding: 0 4px;
+    border: none;
+}
+
+

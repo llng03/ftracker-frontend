@@ -10,8 +10,10 @@ export const getPotList = () => {
 }
 
 //POST
-export const addPot = (pot) => {
-    return api.post("/pots/new", pot);
+export const addPot = (newPotName) => {
+    return api.post("/pots/new", null, {
+        params: {newPotName}
+    });
 }
  
 export const distribute =  (distributeRequest) => {

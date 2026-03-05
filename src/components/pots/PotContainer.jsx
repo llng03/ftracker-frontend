@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { deletePot } from '../../api/potApi.js'
 import './PotContainer.css'
 
-export function PotContainer({ pots, loadPotOverview }) {
+export function PotContainer({ pots, loadPotOverview, correctMode }) {
     const [activatePotIdForPay, setActivatePotIdForPay] = useState(null);
 
     function sum(pot) {
@@ -35,7 +35,11 @@ export function PotContainer({ pots, loadPotOverview }) {
                         <button onClick={() => handleDelete(pot.id)} className="delete-btn">x</button>
                     </div>
 
-                    <button onClick={() => setActivatePotIdForPay(pot.id)}>Geld herausnehmen</button>
+                    <div className={correctMode ? "correct-mode" : ""}>
+                        <button onClick={() => setActivatePotIdForPay(pot.id)} disabled={correctMode}>
+                            Geld auszahlen
+                        </button>
+                    </div>
 
                     {activatePotIdForPay === pot.id  && (
                         <PayModal 
@@ -45,7 +49,11 @@ export function PotContainer({ pots, loadPotOverview }) {
                         />
                     )}
 
-                    <PotTable pot={pot} />
+                    <PotTable 
+                        pot={pot} 
+                        correctMode={correctMode}
+                        loadPotOverview={loadPotOverview}
+                    />
 
                     <b>{"Summe: " + Number(sum(pot)).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</b>
                 </div>

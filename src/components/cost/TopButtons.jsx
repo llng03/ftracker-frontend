@@ -1,22 +1,26 @@
 
 import './TopButtons.css'
 
-export function TopButtons({ setShowDelColumn, setShowOverview, setShowToPots  }) {
+export function TopButtons({ setShowOverview, setShowToPots, correctMode, toggleCorrectMode  }) {
 
     return (
         <>
             <div className="top-button-container">
                 <a href="/pots" className="top-button-left">&rarr; Zu den Pots</a>
+                <a href="/statistics" className="top-button-left">&rarr; Zu den Statistiken</a>
                 <div className="top-button-right">
                     <button onClick={() =>
                         setShowOverview(true)
                     }>Überblick Feste Einnahmen und Ausgaben</button>
-                    <button onClick={() =>
-                        setShowToPots(true)
-                    }>Geld auf Pots verteilen</button>
+                    <div className={correctMode ? "correct-mode" : ""}>
+                        <button disabled = {correctMode} 
+                            onClick={() => setShowToPots(true)
+                        }>Geld auf Pots verteilen</button>
+                    </div>
                     <button onClick={ () =>
-                        setShowDelColumn(true)
-                    }>Löschen</button>
+                        toggleCorrectMode()
+                    }>{correctMode ? "Korrekturmodus beenden" : "Korrekturmodus"}</button>
+            
                 </div>
             </div>
         </>
