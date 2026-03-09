@@ -78,7 +78,7 @@ export function App() {
     
     return (
         <>
-            (loading && <p>Lade Daten...</p>)
+            {loading && (<p>Lade Daten...</p>)}
             {isDemo && (
                 <div style = {{padding: 8, boarder: "1px solid #ccc", marginBottom: 12}}>
                     Demo-Modus - Daten werden später gelöscht.
