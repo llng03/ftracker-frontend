@@ -13,7 +13,7 @@ export function FixedCostTable({ fixedCosts, isIncome }) {
         <table className={isIncome ? "fixed-income" : "fixed-expense"}>
             <tbody>
                 {fixedCosts.map((fCost, index) => (
-                    <tr key={fCost.id}>
+                    <tr key={fCost.id ?? `${fCost.descr}-${fCost.amount}-${index}`}>
                         <td>{index === 0 ? "" : "+"}</td>
                         <td>{fCost.amount.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</td>
                         <td>{fCost.descr}</td>
