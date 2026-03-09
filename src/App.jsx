@@ -10,6 +10,9 @@ import { startDemo } from './api/demoApi';
 
 
 export function App() {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    const GOOGLE_LOGIN_URL = `${API_BASE_URL}/login/oauth2/code/google`;
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -58,7 +61,7 @@ export function App() {
     if(!user) {
         return(
             <div style={{display: "flex", flexDirection: "column", gap:12}}>
-                <a href="http://localhost:8081/login/oauth2/code/google">
+                <a href={GOOGLE_LOGIN_URL}>
                     Login mit Google
                 </a>
 
