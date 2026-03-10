@@ -1,13 +1,14 @@
 
 import './TopButtons.css'
+import { Link } from "react-router-dom";
 
 export function TopButtons({ setShowOverview, setShowToPots, correctMode, toggleCorrectMode  }) {
 
     return (
         <>
             <div className="top-button-container">
-                <a href="/pots" className="top-button-left">&rarr; Zu den Pots</a>
-                <a href="/statistics" className="top-button-left">&rarr; Zu den Statistiken</a>
+                <Link to="/pots" className="top-button-left">&rarr; Zu den Pots</Link>
+                <Link to="/statistics" className="top-button-left">&rarr; Zu den Statistiken</Link>
                 <div className="top-button-right">
                     <button onClick={() =>
                         setShowOverview(true)

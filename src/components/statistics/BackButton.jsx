@@ -1,6 +1,7 @@
+import {Link} from "react-router-dom"
 
 export function BackButton() {
     return (
-        <a href="/" className="top-button-left">&larr; Zurück zur Startseite</a>
+        <Link to="/" className="top-button-left">&larr; Zurück zur Startseite</Link>
     );
 }
