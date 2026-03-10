@@ -1,7 +1,7 @@
 import { startDemo } from '../api/demoApi';
 import './LoginPage.css'
 
-export function LoginPage( setLoading, loadUser ) {
+export function LoginPage( {setLoading, loadUser} ) {
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const GOOGLE_LOGIN_URL = `${API_BASE_URL}/login/oauth2/code/google`;
     

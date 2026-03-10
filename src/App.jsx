@@ -46,7 +46,7 @@ export function App() {
 
     if(!user) {
         return(
-            <LoginPage setLoading={setLoading} uloadUser={loadUser}/>
+            <LoginPage setLoading={setLoading} loadUser={loadUser}/>
         );
     }
 
