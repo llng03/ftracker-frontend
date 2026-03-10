@@ -6,12 +6,11 @@ import { Routes, Route } from "react-router-dom";
 import { ShowRoutes } from './ShowRoutes'
 import { useState, useEffect } from 'react'
 import { getCurrentUser } from './api/loginApi';
-import { startDemo } from './api/demoApi';
+
+import { LoginPage } from './components/LoginPage'
 
 
 export function App() {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-    const GOOGLE_LOGIN_URL = `${API_BASE_URL}/login/oauth2/code/google`;
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -36,40 +35,18 @@ export function App() {
         }
     };
 
-    loadUser();
-}, []);
-    const handleStartDemo = async() => {
-        try {
-            setLoading(true);
-            const data = await startDemo();
-            sessionStorage.setItem("demo_token", data.token);
-            await loadUser();
-    
-
-        } catch (e) {
-            console.error(e);
-            alert("demo konnte nicht gestartet werden.");
-            setLoading(false);
-        }
-    }
+        loadUser();
+    }, []);
 
     const handleLogoutDemo = () => {
         sessionStorage.removeItem("demo_token");
         loadUser();
     }
 
+
     if(!user) {
         return(
-            <div style={{display: "flex", flexDirection: "column", gap:12}}>
-                <a href={GOOGLE_LOGIN_URL}>
-                    Login mit Google
-                </a>
-
-                <button onClick={handleStartDemo}>
-                    Demo starten (ohne Login)
-                </button>
-            </div>
-
+            <LoginPage setLoading={setLoading} uloadUser={loadUser}/>
         );
     }
 
