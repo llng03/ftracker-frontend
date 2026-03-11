@@ -1,7 +1,7 @@
 import { CostForm } from './CostForm.jsx'
 import './CostForms.css'
 
-export function CostForms({ onSuccess, year, month, categories, correctMode, user }) {
+export function CostForms({ onSuccess, year, month, categories, correctMode, loadMonthOverview }) {
     return (
         <div className="form-container">
             <CostForm 
@@ -11,7 +11,7 @@ export function CostForms({ onSuccess, year, month, categories, correctMode, use
                 month={month}
                 categories={categories}
                 correctMode={correctMode}
-                user = {user}
+                loadMonthOverview = {loadMonthOverview}
             />
             <CostForm 
                 income={false}
@@ -20,7 +20,7 @@ export function CostForms({ onSuccess, year, month, categories, correctMode, use
                 month={month}
                 categories={categories}
                 correctMode={correctMode}
-                user = {user}
+                loadMonthOverview = {loadMonthOverview}
             />
         </div>
     );

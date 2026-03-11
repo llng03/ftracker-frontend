@@ -126,6 +126,7 @@ textarea {
     justify-content: center;
 }
 
+
 .checkbox-label {
     display: flex;          /* Checkbox und Text nebeneinander */
     align-items: center;    /* Vertikal zentriert */
@@ -164,7 +165,6 @@ textarea {
 .correct-delete-btn {
     color: white;
     background-color: #E57373
-
 }
 
 .correct-mode button {
