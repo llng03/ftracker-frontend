@@ -36,7 +36,7 @@ export function CategorySelect({categories, onChange, onDelete, correctMode}) {
                             }}
                         >
                             <span>{category}</span>
-                            {correctMode && (
+                            {correctMode && category!=="default" && category!=="-> pots" && (
                                 <button 
                                     type="button"
                                     className="delete allow-click" 
