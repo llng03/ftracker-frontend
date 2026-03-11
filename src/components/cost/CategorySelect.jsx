@@ -1,7 +1,7 @@
 import {useState, useEffect, useRef} from 'react'
 import './CategorySelect.css'
 
-export function CategorySelect({categories, onChange, onDelete}) {
+export function CategorySelect({categories, onChange, onDelete, correctMode}) {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState("default");
     const containerRef = useRef(null);
@@ -36,10 +36,12 @@ export function CategorySelect({categories, onChange, onDelete}) {
                             }}
                         >
                             <span>{category}</span>
-                            <button className="delete" onClick={(e) => {
-                                e.stopPropagation(); 
-                                onDelete(category)}}
-                            >x</button>
+                            {correctMode && (
+                                <button className="delete allow-click" onClick={(e) => {
+                                    e.stopPropagation(); 
+                                    onDelete(category)}}
+                                >x</button>
+                            )}
                         </div>  
                     ))}
                 </div>

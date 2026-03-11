@@ -38,9 +38,9 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
 
     }
 
-    const handleDelete = async (e) => {
-        if(window.confirm("Willst du die Kategorie " + e.value + " wirklich löschen?")) {
-            deleteCateogry(e.value)
+    const handleDelete = async (category) => {
+        if(window.confirm("Willst du die Kategorie " + category + " wirklich löschen?")) {
+            deleteCateogry(category)
             .then(() => loadMonthOverview())
             .catch(err => alert("Fehler beim Löschen " +
                 err.response?.data?.message || err.message
@@ -84,8 +84,9 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
                         <div className="category-form">
                             <CategorySelect
                                 categories={categories}
-                                onSelect={handleChange}
+                                onChange={handleChange}
                                 onDelete={handleDelete}
+                                correctMode={correctMode}
                             />
 
                             <button type="button" 
