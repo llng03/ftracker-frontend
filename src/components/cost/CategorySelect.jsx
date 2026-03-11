@@ -37,9 +37,14 @@ export function CategorySelect({categories, onChange, onDelete, correctMode}) {
                         >
                             <span>{category}</span>
                             {correctMode && (
-                                <button className="delete allow-click" onClick={(e) => {
-                                    e.stopPropagation(); 
-                                    onDelete(category)}}
+                                <button 
+                                    type="button"
+                                    className="delete allow-click" 
+                                    onClick={(e) => {
+                                        e.stopPropagation(); 
+                                        setOpen(false);
+                                        onDelete(category)}
+                                    }
                                 >x</button>
                             )}
                         </div>  

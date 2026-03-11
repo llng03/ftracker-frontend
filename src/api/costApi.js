@@ -74,7 +74,7 @@ export const deletePotEntry = (deleteEntryRequest) => {
 };
 
 export const deleteCateogry = (categoryName) => {
-    return api.delete("costs/deleteCategory", null, {
+    return api.delete("/costs/deleteCategory", {
         params: {categoryName}
     })
 }
