@@ -126,6 +126,7 @@ textarea {
     justify-content: center;
 }
 
+
 .checkbox-label {
     display: flex;          /* Checkbox und Text nebeneinander */
     align-items: center;    /* Vertikal zentriert */

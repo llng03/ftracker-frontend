@@ -1,8 +1,10 @@
 import { createMonthsCost } from "../../api/costApi";
 import { useState } from 'react'
 import { AddCategoryModal } from "./modals/AddCategoryModal";
+import { deleteCateogry } from "../../api/costApi";
+import { CategorySelect } from "./CategorySelect"
 
-export function CostForm({ income, onSuccess, year, month, categories, correctMode, user }) {
+export function CostForm({ income, onSuccess, year, month, categories, correctMode, loadMonthOverview }) {
     const initialFormState = {
         descr: "",
         amount: "",
@@ -36,6 +38,16 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
 
     }
 
+    const handleDelete = async (e) => {
+        if(window.confirm("Willst du die Kategorie " + e.value + " wirklich löschen?")) {
+            deleteCateogry(e.value)
+            .then(() => loadMonthOverview())
+            .catch(err => alert("Fehler beim Löschen " +
+                err.response?.data?.message || err.message
+            ))
+        }
+    }
+
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -66,24 +78,24 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
                     />
                 </div>
 
-                <div className="form-field">
-                    <label htmlFor="cateogory">Kategorie: </label>
-                    <select id="category" value={formData.category} onChange={handleChange}>
-                        <option value="">-- keine Kategorie --</option>
-                        {categories.map(category => 
-                            <option key={category} value={category}>{category}</option>
-                        )}
-                    </select>
-                </div>
-
                 <div className={correctMode ? "correct-mode" : ""}>
-                    <button type="button" 
-                        disabled={correctMode} 
-                        onClick={() => setShowAddCategory(true)}
-                    >+</button>
-                </div>
+                     <div className="form-field">
+                        <label htmlFor="cateogory">Kategorie: </label>
+                        <div className="category-form">
+                            <CategorySelect
+                                categories={categories}
+                                onSelect={handleChange}
+                                onDelete={handleDelete}
+                            />
 
-                <div className={correctMode ? "correct-mode" : ""}>
+                            <button type="button" 
+                                disabled={correctMode} 
+                                onClick={() => setShowAddCategory(true)}
+                            >+</button>
+                        </div>
+                     </div>
+
+
                     <button 
                         disabled={correctMode}
                         type="submit"
