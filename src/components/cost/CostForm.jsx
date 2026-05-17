@@ -24,6 +24,13 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
         });
     };
 
+    const handleCategoryChange = (category) => {
+        setFormData({
+            ...formData,
+            ["category"]: category
+        })
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -84,7 +91,7 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
                         <div className="category-form">
                             <CategorySelect
                                 categories={categories}
-                                onChange={handleChange}
+                                onChange={handleCategoryChange}
                                 onDelete={handleDelete}
                                 correctMode={correctMode}
                             />
