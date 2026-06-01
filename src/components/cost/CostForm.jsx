@@ -13,6 +13,7 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
     }
     const [formData, setFormData] = useState(initialFormState);
     const [error, setError] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState("default");
 
     const [showAddCategory, setShowAddCategory] = useState(false);
 
@@ -94,6 +95,8 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
                                 onChange={handleCategoryChange}
                                 onDelete={handleDelete}
                                 correctMode={correctMode}
+                                selectedCategory={selectedCategory}
+                                setSelectedCategory={setSelectedCategory}
                             />
 
                             <button type="button" 
@@ -107,6 +110,7 @@ export function CostForm({ income, onSuccess, year, month, categories, correctMo
                     <button 
                         disabled={correctMode}
                         type="submit"
+                        onClick={() => setSelectedCategory("default")}
                     >Hinzufügen</button>
                 </div>
                 

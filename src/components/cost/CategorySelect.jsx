@@ -1,9 +1,8 @@
 import {useState, useEffect, useRef} from 'react'
 import './CategorySelect.css'
 
-export function CategorySelect({categories, onChange, onDelete, correctMode}) {
+export function CategorySelect({categories, onChange, onDelete, correctMode, selectedCategory, setSelectedCategory}) {
     const [open, setOpen] = useState(false);
-    const [selected, setSelected] = useState("default");
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -21,7 +20,7 @@ export function CategorySelect({categories, onChange, onDelete, correctMode}) {
     return (
         <div className="select-container" ref={containerRef}>
             <div className="select-display" onClick={() => setOpen(!open)}>
-                {selected}
+                {selectedCategory}
             </div>
             {open && (
                 <div className="dropdown">
@@ -31,7 +30,7 @@ export function CategorySelect({categories, onChange, onDelete, correctMode}) {
                             className="option"
                             onClick={() => {
                                 setOpen(false);
-                                setSelected(category);
+                                setSelectedCategory(category);
                                 onChange(category);
                             }}
                         >
